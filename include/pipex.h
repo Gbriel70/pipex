@@ -1,6 +1,7 @@
 #ifndef PIPEX_H
 # define PIPEX_H
 
+# include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -26,7 +27,7 @@ typedef struct s_data
     char    **path;
     int     path_quantity;
     char    *path_name;
-    char    **comands_args;
+    char    ***comands_args;
     int     comands_quantity;
     int     *comands_args_quantity;
     int     pipe_quantity;

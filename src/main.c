@@ -19,7 +19,7 @@ void get_path(char **envp, t_data *pipex)
     i = 0;
     while (ft_strnstr(envp[i], "PATH=", 5) == NULL)
         i++;
-    pipex->path_quantity = ft_count_args(envp[i] + 5, ":");
+    pipex->path_quantity = ft_count_args(envp[i] + 5, ':');
     pipex->path = ft_split_args(envp[i] + 5, ':');
     if (!pipex->path)
         ft_handle_errors("split path failed", pipex, NULL, 0);

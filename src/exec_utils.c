@@ -1,4 +1,4 @@
-#include "include/pipex.h"
+#include "../include/pipex.h"
 
 void open_input_file(t_fd *fd, char **av, t_data *pipex)
 {
