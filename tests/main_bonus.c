@@ -266,13 +266,13 @@ MU_TEST(funtion_should_run_here_doc)
 	char    *diff_result;
 
 	printf("\n------------------------\n");
-	printf(" TEST 11 - BONUS: here_doc input: Hello World!");
+	printf(" TEST 11 - BONUS: here_doc input: BOLA");
 	printf("\n------------------------\n");
 
-	exec_cmd("cat << EOF | rev >> ../outfile_expected11\nHello World!\nEOF\n");
+	exec_cmd("cat << EOF | rev >> ../outfile_expected11\nBOLA\nEOF\n");
 	exec_cmd("../pipex_bonus here_doc EOF \"cat\" \"rev\" ../outfile11");
 
-	diff_result = exec_cmd("diff -s ../outfile11 ../outfile_expected11");
+	diff_result = exec_cmd("LC_ALL=C diff -s ../outfile11 ../outfile_expected11");
 	ft_printf("%s", diff_result);
 	outfile = exec_cmd("cat ../outfile11");
 	ft_printf("Outfile: %s", outfile);
