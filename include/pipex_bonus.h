@@ -32,20 +32,20 @@ typedef struct s_hdoc
 
 typedef struct s_data
 {
-    int ac;
-    char **envp;
-    char **path;
-    int path_quantity;
-    char ***comand_args;
-    char *pathname;
-    int comand_quantity;
-    int comand_offset;
-    int *args_quantity;
-    int pipe_quantity;
-    pid_t *pid;
-    int wait_status;
-    int exit_code;
-    t_hdoc heredoc;
+    int     ac;
+    char    **envp;
+    char    **path;
+    int     path_quantity;
+    char    ***comand_args;
+    char    *pathname;
+    int     comand_quantity;
+    int     comand_offset;
+    int     *args_quantity;
+    int     pipe_quantity;
+    pid_t   *pid;
+    int     wait_status;
+    int     exit_code;
+    t_hdoc  heredoc;
 }   t_data;
 
 //MAIN FUNCTIONS

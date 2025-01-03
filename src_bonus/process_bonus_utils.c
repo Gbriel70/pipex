@@ -84,17 +84,15 @@ char *ft_trim_quotes(char *str, char *quotes)
 char **ft_split_args(char const *str, char c)
 {
     char **array;
-    int args_count;
     int i;
     int j;
 
-    args_count = ft_count_args(str, c);
-    array = malloc((args_count + 1) * sizeof(char *));
+    array = malloc((ft_count_args(str, c) + 1) * sizeof(char *));
     if (!array)
         return NULL;
     i = 0;
     j = -1;
-    while (++j < args_count)
+    while (++j < ft_count_args(str, c))
     {
         while (str[i] == c )
             i++;

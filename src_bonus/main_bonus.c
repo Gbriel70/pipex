@@ -59,6 +59,9 @@ void get_comands_args(char **av, t_data *pipex)
     pipex->comand_quantity = pipex->ac - 1 - pipex->comand_offset;
     pipex->comand_args = ft_calloc((pipex->comand_quantity + 1), sizeof(char **));
     if (!pipex->comand_args)
+        ft_handle_errors("comand calloc failed", pipex, NULL, 1);
+    pipex->args_quantity = ft_calloc((pipex->comand_quantity + 1), sizeof(int));
+    if (!pipex->args_quantity)
     {
         free(pipex->comand_args);
         ft_handle_errors("args count calloc failed", pipex, NULL, 1);
