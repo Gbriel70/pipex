@@ -116,5 +116,5 @@ int main(int ac, char **av, char **envp)
         i++;
     }
     wait_finish_pipe(&fd, &pipex);
-    return 0;
+    return pipex.exit_status;
 }
