@@ -39,7 +39,7 @@ void get_path(char **envp, t_data *pipex)
     pipex->path_quantity = ft_count_args(envp[i] + 5, ':');
     pipex->path = ft_split_args(envp[i] + 5, ':');
     if (!pipex->path)
-        ft_handle_error("split path failed", NULL, NULL, 0);
+        ft_handle_errors("split path failed", NULL, NULL, 0);
     i = 0;
     while (i < pipex->path_quantity)
     {
@@ -114,7 +114,7 @@ int main(int ac, char **av, char **envp)
     check_ac_and_heredoc(ac, av, &pipex);
     get_path(envp, &pipex);
     get_comands_args(av, &pipex);
-    create_pipes(&fd, &pipex);
+    create_pipes(&pipex, &fd);
     pipex.pid = malloc(pipex.comand_quantity * sizeof(int));
     if (!pipex.pid)
         ft_handle_errors("pid malloc failed", &pipex, &fd, 3);

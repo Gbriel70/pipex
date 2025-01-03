@@ -1,7 +1,5 @@
 #include "pipex_bonus.h"
 
-#include "../include/pipex.h"
-
 void ft_free_matrix(char **matrix, int size)
 {
     int i;
@@ -40,13 +38,13 @@ void ft_free_pipex(t_data *pipex, t_fd *fd, int stage)
         ft_free_matrix(pipex->path, pipex->path_quantity);
         if (stage >= 2)
         {
-            while (i < pipex->comands_quantity)
+            while (i < pipex->comand_quantity)
             {
-                ft_free_matrix(pipex->comands_args[i], pipex->comands_args_quantity[i]);
+                ft_free_matrix(pipex->comand_args[i], pipex->args_quantity[i]);
                 i++;
             }
-            free(pipex->comands_args);
-            free(pipex->comands_args_quantity);
+            free(pipex->comand_args);
+            free(pipex->args_quantity);
         }
         if (stage >= 3)
             ft_close_pipes(fd->pipe, pipex->pipe_quantity);
@@ -68,18 +66,18 @@ void wait_finish_pipe(t_fd *fd, t_data *pipex)
 
     i = 0;
     ft_close_pipes(fd->pipe, pipex->pipe_quantity);
-    while (i < pipex->comands_quantity)
+    while (i < pipex->comand_quantity)
     {
         if (waitpid(pipex->pid[i], &pipex->wait_status, 0) == -1)
             ft_handle_errors("waitpid failed", pipex, fd, 1);
         if (WIFEXITED(pipex->wait_status))
-            pipex->exit_status = WEXITSTATUS(pipex->wait_status);
+            pipex->exit_code = WEXITSTATUS(pipex->wait_status);
         else if (WIFSIGNALED(pipex->wait_status))
-            pipex->exit_status = WTERMSIG(pipex->wait_status);
-        if (pipex->exit_status == 127)
-            ft_printf("%s: command not found\n", pipex->comands_args[i][0]);
-        if (pipex->exit_status == 126)
-            ft_printf("%s: permission denied\n", pipex->comands_args[i][0]);
+            pipex->exit_code = WTERMSIG(pipex->wait_status);
+        if (pipex->exit_code == 127)
+            ft_printf("%s: command not found\n", pipex->comand_args[i][0]);
+        if (pipex->exit_code == 126)
+            ft_printf("%s: permission denied\n", pipex->comand_args[i][0]);
         i++;
     }
     ft_free_pipex(pipex, fd, 2);

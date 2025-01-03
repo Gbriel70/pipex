@@ -16,13 +16,13 @@ void open_input_file(t_fd *fd, char **av, t_data *pipex, t_hdoc *heredoc)
         pipe(heredoc->pipe);
         fd->input_file = heredoc->pipe[0];
         ft_printf(">");
-        heredoc->line = ft_get_next_line(STDIN_FILENO);
+        heredoc->line = get_next_line(STDIN_FILENO);
         while (ft_strncmp(heredoc->line, heredoc->eof, heredoc->eof_l) != 0)
         {
             ft_putstr_fd(heredoc->line, heredoc->pipe[1]);
             free(heredoc->line);
             ft_printf(">");
-            heredoc->line = ft_get_next_line(STDIN_FILENO);
+            heredoc->line = get_next_line(STDIN_FILENO);
         }
         free(heredoc->line);
         close(heredoc->pipe[1]);

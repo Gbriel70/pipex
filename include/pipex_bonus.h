@@ -52,7 +52,7 @@ typedef struct s_data
 void check_ac_and_heredoc(int ac, char **av, t_data *pipex);
 void get_path(char **envp, t_data *pipex);
 void get_comands_args(char **av, t_data *pipex);
-void create_pipes(t_fd *fd, t_data *pipex);
+void create_pipes(t_data *pipex, t_fd *fd);
 
 //PROCESS UTILS
 size_t ft_calculate_substrings_in_quotes(char const *str);
