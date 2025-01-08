@@ -22,6 +22,10 @@ bonus:
 	./$(BONUS_NAME)
 	make --no-print fclean
 
+leak: $(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME)
+	make --no-print fclean
+
 clean:
 	rm -f *.o
 	rm -f ../outfile*

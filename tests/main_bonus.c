@@ -47,6 +47,7 @@ MU_TEST(function_should_run_comand_ls_l_wc_l)
     ft_printf("Outfile: %s", outfile);
     mu_assert_string_eq(expected, diff_result);
     free(diff_result);
+	free(outfile);
 }
 
 MU_TEST(funtion_should_run_command_grep_a1_wc_w)
@@ -68,6 +69,7 @@ MU_TEST(funtion_should_run_command_grep_a1_wc_w)
 	ft_printf("Outfile: %s", outfile);
 	mu_assert_string_eq(expected, diff_result);
 	free(diff_result);
+	free(outfile);
 }
 
 MU_TEST(funtion_should_run_command_cat_ls_l)
@@ -89,6 +91,7 @@ MU_TEST(funtion_should_run_command_cat_ls_l)
 	ft_printf("Outfile: %s", outfile);
 	mu_assert_string_eq(expected, diff_result);
 	free(diff_result);
+	free(outfile);
 }
 
 MU_TEST(funtion_should_run_command_cat_wc)
@@ -110,6 +113,7 @@ MU_TEST(funtion_should_run_command_cat_wc)
 	ft_printf("Outfile: %s", outfile);
 	mu_assert_string_eq(expected, diff_result);
 	free(diff_result);
+	free(outfile);
 }
 
 MU_TEST(funtion_should_run_command_echo_tr)
@@ -131,6 +135,7 @@ MU_TEST(funtion_should_run_command_echo_tr)
 	ft_printf("Outfile: %s", outfile);
 	mu_assert_string_eq(expected, diff_result);
 	free(diff_result);
+	free(outfile);
 }
 
 MU_TEST(funtion_should_create_outfile_and_run_second_command)
@@ -152,6 +157,7 @@ MU_TEST(funtion_should_create_outfile_and_run_second_command)
 	ft_printf("Pipex outfile: %s\n", outfile);
 	mu_assert_string_eq(expected, diff_result);
 	free(diff_result);
+	free(outfile);
 }
 
 MU_TEST(funtion_should_run_command_echo_tr_space)
@@ -173,6 +179,7 @@ MU_TEST(funtion_should_run_command_echo_tr_space)
 	ft_printf("Pipex outfile: %s\n", outfile);
 	mu_assert_string_eq(expected, diff_result);
 	free(diff_result);
+	free(outfile);
 }
 
 MU_TEST(function_should_try_run_command_without_x_permission)
@@ -194,6 +201,7 @@ MU_TEST(function_should_try_run_command_without_x_permission)
     ft_printf("Pipex outfile: %s\n", outfile);
     mu_assert_string_eq(expected, diff_result);
     free(diff_result);
+	free(outfile);
 }
 
 MU_TEST(function_should_try_run_command_with_path)
@@ -215,6 +223,7 @@ MU_TEST(function_should_try_run_command_with_path)
     ft_printf("Pipex outfile: %s\n", outfile);
     mu_assert_string_eq(expected, diff_result);
     free(diff_result);
+	free(outfile);
 }
 
 MU_TEST(function_should_run_5_commands)
@@ -236,6 +245,7 @@ MU_TEST(function_should_run_5_commands)
     ft_printf("Outfile: %s\n", outfile);
     mu_assert_string_eq(expected, diff_result);
     free(diff_result);
+	free(outfile);
 }
 
 MU_TEST(function_should_overwrite_output)
@@ -257,6 +267,7 @@ MU_TEST(function_should_overwrite_output)
     ft_printf("Outfile: %s\n", outfile);
     mu_assert_string_eq(expected, diff_result);
     free(diff_result);
+	free(outfile);
 }
 
 MU_TEST(funtion_should_run_here_doc)
@@ -278,6 +289,7 @@ MU_TEST(funtion_should_run_here_doc)
 	ft_printf("Outfile: %s", outfile);
 	mu_assert_string_eq(expected, diff_result);
 	free(diff_result);
+	free(outfile);
 }
 
 MU_TEST_SUITE(test_suite)
