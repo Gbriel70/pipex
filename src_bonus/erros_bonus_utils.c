@@ -38,13 +38,13 @@ void ft_free_pipex(t_data *pipex, t_fd *fd, int stage)
         ft_free_matrix(pipex->path, pipex->path_quantity);
         if (stage >= 2)
         {
-            while (i < pipex->comand_quantity)
+            while (i < pipex->cmd_qtd)
             {
-                ft_free_matrix(pipex->comand_args[i], pipex->args_quantity[i]);
+                ft_free_matrix(pipex->comand_args[i], pipex->args_qtd[i]);
                 i++;
             }
             free(pipex->comand_args);
-            free(pipex->args_quantity);
+            free(pipex->args_qtd);
         }
         if (stage >= 3)
             ft_close_pipes(fd->pipe, pipex->pipe_quantity);
@@ -66,7 +66,7 @@ void wait_finish_pipe(t_fd *fd, t_data *pipex)
 
     i = 0;
     ft_close_pipes(fd->pipe, pipex->pipe_quantity);
-    while (i < pipex->comand_quantity)
+    while (i < pipex->cmd_qtd)
     {
         if (waitpid(pipex->pid[i], &pipex->wait_status, 0) == -1)
             ft_handle_errors("waitpid failed", pipex, fd, 1);

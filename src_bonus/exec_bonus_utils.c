@@ -96,7 +96,7 @@ int redirect_stdin_stdout(int i, t_fd *fd, t_data *pipex)
         if (dup2(fd->pipe[i - 1][0], STDIN_FILENO) == -1)
             return -1;
     }
-    if (i == pipex->comand_quantity - 1)
+    if (i == pipex->cmd_qtd - 1)
     {
         if (dup2(fd->output_file, STDOUT_FILENO) == -1)
             return -1;
@@ -115,7 +115,7 @@ void exec_comand(int i, t_fd fd, char **av, t_data *pipex)
 {
     if (i == 0)
         open_input_file(&fd, av, pipex, &pipex->heredoc);
-    if (i == pipex->comand_quantity - 1)
+    if (i == pipex->cmd_qtd - 1)
         open_output_file(&fd, av, pipex);
     if (pipex->comand_args[i][0] == 0)
         pipex->exit_code = 126;
