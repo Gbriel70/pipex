@@ -6,7 +6,7 @@
 /*   By: gcosta-m <gcosta-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 09:58:11 by gcosta-m          #+#    #+#             */
-/*   Updated: 2025/01/08 10:25:26 by gcosta-m         ###   ########.fr       */
+/*   Updated: 2025/01/13 09:47:02 by gcosta-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	check_ac_and_heredoc(int ac, char **av, t_data *pipex)
 	{
 		if (ac < 6)
 		{
-			ft_printf("error: Usage: ./pipex here_doc EOF cmd1 cmd2 [cmdN] outfile\n");
+			ft_printf("Usage: ./pipex here_doc EOF cmd1 cmd2 [cmdN] outfile\n");
 			exit(EXIT_FAILURE);
 		}
 		pipex->heredoc.flag = 1;
@@ -30,7 +30,7 @@ void	check_ac_and_heredoc(int ac, char **av, t_data *pipex)
 	{
 		if (ac < 5)
 		{
-			ft_printf("error: Usage: ./pipex input_file cmd1 cmd2 [cmd3 ...] outfile\n");
+			ft_printf("Usage: ./pipex input_file cmd1 cmd2 [cmd3 ..] outfile\n");
 			exit(EXIT_FAILURE);
 		}
 		pipex->heredoc.flag = 0;
