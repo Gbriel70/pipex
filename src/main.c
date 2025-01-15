@@ -6,7 +6,7 @@
 /*   By: gcosta-m <gcosta-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 17:22:38 by gcosta-m          #+#    #+#             */
-/*   Updated: 2025/01/07 17:43:35 by gcosta-m         ###   ########.fr       */
+/*   Updated: 2025/01/15 10:00:08 by gcosta-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	create_pipes(t_fd *fd, t_data *pipex)
 	int	i;
 
 	pipex->pipe_quantity = pipex->cmd_qtd - 1;
-	fd->pipe = malloc(pipex->pipe_quantity * sizeof(int *));
+	fd->pipe = malloc((pipex->pipe_quantity + 1) * sizeof(int *));
 	if (!fd->pipe)
 		ft_handle_errors("pipe malloc failed", pipex, NULL, 2);
 	fd->pipe[pipex->pipe_quantity] = NULL;
