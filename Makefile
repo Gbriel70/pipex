@@ -25,7 +25,7 @@ HEADER_BONUS = $(HEADERS_PATH)/pipex_bonus.h
 
 #==================================RULES========================================#
 
-all: libft_plus $(NAME)
+all: libft $(NAME)
 
 libft:
 	$(MAKE_NO_PRINT) -C $(LIBFT_PATH)
@@ -72,6 +72,6 @@ fclean: clean
 
 re: fclean all
 
-rebonus: fclean bonus
+rebonus: fclean libft bonus
 
 .PHONY: all clean fclean re libft leak gdb run
