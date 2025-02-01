@@ -13,19 +13,20 @@
 
 Pipex is a simulation of the | from the shell. It allows you to execute two commands in sequence, where the output of the first command is passed as input to the second command, using pipes and processes.
 
-# exemple
+# Exemple
 
+**Comand pipe |**
 ```bash
 >$ ls | grep exemple.txt
 ```
-
+**Pipex program**
 ```bash
 >$ ./pipex input_file "ls" "grep exemple.txt" output_file    
 ```
 
 # ⚙️ How does it work?
 
-Execution Flow
+**Execution Flow**
 
     Open Input/Output Files:
 
@@ -150,3 +151,102 @@ Example:
     ```bash
     ./pipex input_file "/usr/bin/ls" "/usr/bin/wc" output_file
     ```
+
+# 🏆 BONUS PART
+
+## 🔥 Bonus Features
+
+# 1 -> **Multiple Pipes Support**
+
+    Allows you to chain more than two commands (e.g. cmd1 | cmd2 | cmd3 | ...).
+
+    How to implement:
+
+    Use a loop to create pipes and processes dynamically.
+
+    Manage file descriptors carefully to avoid leaks.
+
+**Usage example:**
+
+```bash
+./pipex input.txt "cat" "grep test" "wc -l" output.txt
+```
+
+# 2 -> **Here Documents (<<)**
+
+**🔍 How does it work?**
+
+    The here_doc reads the user input until it finds a specific delimiter, indicated by the user. All the content typed up to the delimiter is stored and then redirected to the command that will be executed.
+
+**🚀 Example of Usage in the Shell**
+
+```bash
+$ ./pipex here_doc LIMITER cmd1 cmd2 outfile
+```
+    This simulates the following behavior in the shell:
+
+    cmd1 << LIMITER | cmd2 >> outfile
+
+    Here, the LIMITER defines where the here_doc input ends.
+
+## ⚙️ Implementation Logic
+
+1. Checking the here_doc:
+
+    In main(), check if the first argument is here_doc. This changes the logic of redirection and opening the output file (append mode instead of truncate).
+
+    Reading the Input:
+    Use a loop with get_next_line() to read the user input until the delimiter is found.
+
+    ```C
+    while (1) {
+    write(1, "heredoc> ", 9);
+    line = get_next_line(STDIN_FILENO);
+    if (!line || ft_strncmp(line, limiter, ft_strlen(limiter)) == 0)
+    break;
+    write(pipe_fd[1], line, ft_strlen(line));
+    free(line);
+    }
+    ```
+
+2. Creating a Pipe:
+
+    Store the content read in a pipe, redirecting its output to the cmd1 command.
+
+3. Executing the Commands:
+
+    cmd1 reads from the pipe (instead of a file), and cmd2 processes the result normally, saving it in outfile.
+
+## 📝 Considerations
+
+    The output file in here_doc mode must be opened with the O_APPEND mode, to add it to the end of the existing file.
+    Proper control of resources (pipes, processes and memory) is essential to avoid memory leaks and open file descriptors.
+
+# 3 -> **Environment Variables (PATH)**
+
+    Searches for commands in the directories listed in the $PATH environment variable.
+
+    How to implement:
+
+    Use split(":", getenv("PATH")) to get the list of directories.
+
+    Check in each directory if the command exists (access()).
+
+**Example:**
+```bash
+./pipex input.txt "ls" "grep .c" output.txt # Works without using /bin/ls
+```
+
+# 4 -> **Advanced Error Handling**
+
+    Detailed error messages (e.g. "Command not found: lss").
+
+    Handling signals like SIGINT (Ctrl+C) to close descriptors correctly.
+
+# 5 -> **Error Input/Output Redirection (STDERR)**
+
+    Allows you to redirect STDERR to a file (e.g. 2> error.log).
+
+    How to implement:
+
+    Use dup2() to redirect file descriptor 2 (STDERR_FILENO).
