@@ -72,7 +72,11 @@ input.txt → [cmd1] → (pipe) → [cmd2] → output.txt
     ```bash
     cd pipex
     ```
-3. Compile the project using Make:
+3. Init submodule
+   ```bash
+   git submodule update --init --recursive
+   ```
+4. Compile the project using Make:
     ```bash
     make
     ```
